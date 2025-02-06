@@ -36,6 +36,7 @@ export default function LoginPage() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -52,6 +53,7 @@ export default function LoginPage() {
         formDetails
       );
       if (data) {
+        reset();
         console.log(data);
         toast.success("Authenticated Successful");
       } else {

@@ -80,6 +80,7 @@ export default function SignUpPage() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -112,6 +113,7 @@ export default function SignUpPage() {
       );
       if (response.data) {
         toast.success("Profile created successfully");
+        reset();
         console.log(response);
         return;
       }
