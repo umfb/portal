@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { MouseEvent, useState } from "react";
 import axios from "axios";
 import { EmailSharp, Lock } from "@mui/icons-material";
+import { toast, ToastContainer } from "react-toastify";
 
 type FormData = {
   email: string;
@@ -52,11 +53,14 @@ export default function LoginPage() {
       );
       if (data) {
         console.log(data);
+        toast.success("Authenticated Successful");
       } else {
         console.log(data);
+        toast.error("Please try again");
         // setIsError(true);
       }
     } catch (error) {
+      toast.error("Please try again");
       //   setIsError(true);
       console.log(error);
     } finally {
@@ -128,6 +132,7 @@ export default function LoginPage() {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }

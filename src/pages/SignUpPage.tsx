@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 type PasswordField = "password" | "confirmPassword";
 type FormData = {
@@ -110,12 +111,14 @@ export default function SignUpPage() {
         actualData
       );
       if (response.data) {
+        toast.success("Profile created successfully");
         console.log(response);
         return;
       }
-
+      toast.error("Please try again");
       console.log(response.data);
     } catch (error) {
+      toast.error("Please try again");
       console.log(error);
     } finally {
       setIsPending(false);
@@ -247,7 +250,7 @@ export default function SignUpPage() {
             </p>
           )}
         </div>
-        <div className="flex items-center px-1 border">
+        <div className="flex items-center px-1 border-2 border-[#afd039]">
           <AssignmentInd />
           <select
             {...register("accessRole")}
@@ -283,6 +286,7 @@ export default function SignUpPage() {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }
