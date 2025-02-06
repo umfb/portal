@@ -208,12 +208,9 @@ export default function SignUpPage() {
           <button
             name="password"
             onClick={handlePasswordVisibility}
-            className={`${
-              isHidden.password
-                ? "text-[#7b3434] font-bold"
-                : "text-[#afd039] font-bold"
-            }`}
+            className={"text-[#7b3434] font-bold"}
             style={{ fontSize: "14px" }}
+            type="button"
           >
             {isHidden.password ? "Hide" : "Show"}
           </button>
@@ -236,11 +233,7 @@ export default function SignUpPage() {
             aria-label={
               isHidden.confirmPassword ? "Show password" : "Hide password"
             }
-            className={`${
-              isHidden.confirmPassword
-                ? "text-[#7b3434] font-bold"
-                : "text-[#afd039] font-bold"
-            }`}
+            className={"text-[#7b3434] font-bold"}
             type="button"
             name="confirmPassword"
             style={{ fontSize: "14px" }}
