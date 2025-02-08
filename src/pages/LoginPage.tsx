@@ -2,9 +2,10 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MouseEvent, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { EmailSharp, Lock } from "@mui/icons-material";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 type FormData = {
   email: string;
@@ -20,11 +21,17 @@ const schema = z.object({
       "Password must be at least 8 characters long and must contain at least one uppercase letter, one lowercase letter, one digit, and one special character(!@#$%^&*?)."
     ),
 });
+
+type responseData = {
+  message: string;
+  status: boolean;
+  token: string;
+};
+
 export default function LoginPage() {
-  const [isHidden, setIsHidden] = useState<boolean>(true);
-  //   const [isError, setIsError] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const [isHidden, setIsHidden] = useState<boolean>(false);
   const [isPending, setIsPending] = useState<boolean>(false);
-  //   const [response, setResponse] = useState(null);
 
   const handlePasswordVisibility = (event: MouseEvent<HTMLButtonElement>) => {
     const name = event.currentTarget.name;
@@ -49,22 +56,23 @@ export default function LoginPage() {
     }
     try {
       const data = await axios.post(
-        "https://portal-server-1.onrender.com/login",
-        formDetails
+        "http://localhost:5000/login",
+        formDetails,
+        {
+          withCredentials: true,
+        }
       );
       if (data) {
         reset();
-        console.log(data);
-        toast.success("Authenticated Successful");
-      } else {
-        console.log(data);
-        toast.error("Please try again");
-        // setIsError(true);
+        localStorage.setItem("accessToken", data.data.accessToken);
+        localStorage.setItem("user", data.data.name);
+        toast.success("Authentication Successful");
+        navigate("/dashboard");
       }
     } catch (error) {
-      toast.error("Please try again");
-      //   setIsError(true);
-      console.log(error);
+      const axiosError = error as AxiosError;
+      const responseData = axiosError.response?.data as responseData;
+      toast.error(responseData?.message || "An error occurred");
     } finally {
       setIsPending(false);
     }
