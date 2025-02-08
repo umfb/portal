@@ -1,5 +1,4 @@
 import { Event, Logout, Settings } from "@mui/icons-material";
-import { useState } from "react";
 
 export default function NavBar() {
   return (
