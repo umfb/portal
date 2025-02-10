@@ -23,7 +23,7 @@ export default function Dashboard() {
       }
     } catch (error) {
       const axiosError = error as AxiosError;
-      if (axiosError.status === 403) {
+      if (axiosError.status === 403 || 404) {
         navigate("/");
       }
       console.error("Error verifying user:", error);

@@ -6,7 +6,7 @@ import {
   Person,
   Phone,
 } from "@mui/icons-material";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -39,6 +39,13 @@ type responseData = {
   message: string;
   status: boolean;
   token: string;
+};
+
+type roleData = {
+  role: string;
+  creator: string;
+  createdAt: Date;
+  updateAt: Date;
 };
 
 const schema = z
@@ -79,6 +86,28 @@ export default function SignUpPage() {
   });
 
   const [isPending, setIsPending] = useState<boolean>(false);
+  const [roles, setRoles] = useState<roleData[]>([]);
+
+  const fetchRoles = async () => {
+    try {
+      const response = await axios.post(
+        "https://portal-server-1.onrender.com/role/get-roles",
+        {},
+        {
+          headers: {
+            contentType: "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      if (response) {
+        console.log(response);
+        setRoles(response.data.roles);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handlePasswordVisibility = (e: MouseEvent<HTMLButtonElement>) => {
     const name = e.currentTarget.name as PasswordField;
@@ -135,6 +164,10 @@ export default function SignUpPage() {
       setIsPending(false);
     }
   };
+
+  useEffect(() => {
+    fetchRoles();
+  }, []);
 
   return (
     <div className="bg-[#b4cf4ab4] w-full flex items-center ">
@@ -303,8 +336,11 @@ export default function SignUpPage() {
               <option className="text-secondary" value="" disabled>
                 --Access Role--
               </option>
-              <option value="Super">Admin</option>
-              <option value="Basic">User</option>
+              {roles.map((role) => (
+                <option key={role.role} value={role.role}>
+                  {role.role}
+                </option>
+              ))}
             </select>
             {errors.accessRole && (
               <p className="text-red-500 text-xs absolute top-[100%]">

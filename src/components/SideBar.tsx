@@ -25,7 +25,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-full bg-[#fff] text-[#1C1C1C] m-0 border-r transition-width ease-in-out duration-700 ${
+      className={`h-full bg-[#fff] text-black text-sm m-0 border-r transition-width ease-in-out duration-700 ${
         isExpanded ? "w-[250px]" : "w-[80px]"
       }`}
     >
