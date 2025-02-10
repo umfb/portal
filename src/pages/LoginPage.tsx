@@ -66,6 +66,7 @@ export default function LoginPage() {
         reset();
         localStorage.setItem("accessToken", data.data.accessToken);
         localStorage.setItem("user", data.data.name);
+        localStorage.setItem("email", data.data.email);
         toast.success("Authentication Successful");
         navigate("/dashboard");
       }

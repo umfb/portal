@@ -1,11 +1,17 @@
 import { useState } from "react";
 import {
+  AccountBalance,
   AdminPanelSettings,
+  AssignmentTurnedIn,
+  Campaign,
   // Business,
   ChevronLeftRounded,
   ChevronRightRounded,
+  Computer,
+  Group,
   History,
   PeopleOutlineRounded,
+  Security,
 } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 
@@ -19,7 +25,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-full bg-[#F4F4F4] text-[#1C1C1C] m-0 border-r transition-width ease-in-out duration-700 ${
+      className={`h-full bg-[#fff] text-[#1C1C1C] m-0 border-r transition-width ease-in-out duration-700 ${
         isExpanded ? "w-[250px]" : "w-[80px]"
       }`}
     >
@@ -27,9 +33,15 @@ export default function SideBar() {
         <div className="flex justify-between items-start shadow-sm px-3 py-2">
           {isExpanded && (
             <div className="flex flex-col gap-1">
-              <p className="p-0 m-0 text-base font-bold text-[#37474F]">
+              <p
+                className="p-0 m-0 text-base font-bold text-[#37474F] font-poppins"
+                style={{ fontFamily: "Poppins, sans-serif" }}
+              >
                 Welcome,<br></br>
-                <span className="text-sm font-semibold text-[#1C1C1C]">
+                <span
+                  className="text-sm font-semibold text-[#1C1C1C] font-inter"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
                   {localStorage.getItem("user")}
                 </span>
               </p>
@@ -40,102 +52,104 @@ export default function SideBar() {
           </button>
         </div>
         <ul className="flex flex-col mt-3 px-0 text-[#1C1C1C]">
-          <NavLink
-            to="./hr"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#7b3434",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            HR
-          </NavLink>
-          <NavLink
-            to="./finOps"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#7b3434",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            Finance & Ops
-          </NavLink>
-          <NavLink
-            to="crM"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#7b3434",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            Credit & Marketing
-          </NavLink>
-          <NavLink
-            to="audit"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#7b3434",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            Audit
-          </NavLink>
-          <NavLink
-            to="compliance"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#7b3434",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            Compliance
-          </NavLink>
-          <NavLink
-            to="./info-tech"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#7b3434",
-              fontSize: "14px",
-              fontWeight: "500",
-            }}
-          >
-            IT
-          </NavLink>
+          <div className="border-y border-[#AFCD39]">
+            <NavLink
+              to="./hr"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
+                  isActive ? "bg-[#BB7A5A]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <Group />
+              HR
+            </NavLink>
+            <NavLink
+              to="./finOps"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
+                  isActive ? "bg-[#BB7A5A]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <AccountBalance />
+              Finance & Ops
+            </NavLink>
+            <NavLink
+              to="crM"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
+                  isActive ? "bg-[#BB7A5A]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <Campaign />
+              Credit & Marketing
+            </NavLink>
+            <NavLink
+              to="audit"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
+                  isActive ? "bg-[#BB7A5A]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <AssignmentTurnedIn />
+              Audit
+            </NavLink>
+            <NavLink
+              to="compliance"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
+                  isActive ? "bg-[#BB7A5A]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <Security />
+              Compliance
+            </NavLink>
+            <NavLink
+              to="./info-tech"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
+                  isActive ? "bg-[#BB7A5A]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <Computer />
+              IT
+            </NavLink>
+          </div>
           <NavLink
             to="staff"
             className={({ isActive }) =>
@@ -146,6 +160,7 @@ export default function SideBar() {
             style={{
               textDecoration: "none",
               color: "#1C1C1C",
+              fontFamily: "Inter, sans-serif",
             }}
           >
             <button className="">
@@ -163,6 +178,7 @@ export default function SideBar() {
             style={{
               textDecoration: "none",
               color: "#1C1C1C",
+              fontFamily: "Inter, sans-serif",
             }}
           >
             <button className="">
@@ -180,10 +196,11 @@ export default function SideBar() {
             style={{
               textDecoration: "none",
               color: "#1C1C1C",
+              fontFamily: "Inter, sans-serif",
             }}
           >
             <History />
-            {isExpanded && <button>Activities</button>}
+            {isExpanded && <button>Audit Logs</button>}
           </NavLink>
         </ul>
       </nav>

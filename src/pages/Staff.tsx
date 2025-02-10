@@ -60,7 +60,7 @@ const columns = [
     ),
     cell: (info) => {
       const { email } = info.row.original;
-      return <span className="text-blue-400 italic">{email}</span>;
+      return <span className="text-[#B4CF4A] italic">{email}</span>;
     },
   }),
   columnHelper.accessor("accessRole", {
@@ -82,7 +82,7 @@ const columns = [
     ),
     cell: (info) => {
       const { phoneNumber } = info.row.original;
-      return <span className="text-blue-400 italic">{phoneNumber}</span>;
+      return <span className="text-[#B4CF4A] italic">{phoneNumber}</span>;
     },
   }),
 ];
@@ -129,9 +129,12 @@ export default function Staff() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full flex-1 px-4 sm:px-6 lg:px-8 bg-[#F5E3C2] items-start pt-3 pb-4">
+    <div className="flex flex-col h-full flex-1 px-11 bg-[#fff] items-start pt-10 pb-4">
       <div className="flex items-center justify-between w-full mb-2">
-        <div className="border-2 border-[#7b3434] flex items-center px-2 py-1">
+        <div
+          className="border-2 border-[#7b3434] flex items-center px-2 py-1"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
           <SearchSharp />
           <input
             value={globalFilter || ""}
@@ -141,7 +144,10 @@ export default function Staff() {
             className="outline-none px-2 text-sm"
           />
         </div>
-        <div className="flex items-center">
+        <div
+          className="flex items-center"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
           <Link
             className="flex items-center bg-[#8AA52F] py-1 px-2 active:bg-[#BB7A5A] shadow-sm text-sm shadow-black"
             to="/dashboard/signup"
@@ -153,14 +159,18 @@ export default function Staff() {
         </div>
       </div>
       <div className="overflow-x-auto bg-white shadow-md rounded-lg w-full">
-        <table className="min-w-full divide-y divide-gray-200 p-0">
-          <thead className="bg-gray-50 sticky top-0 z-10">
+        <table
+          className="min-w-full border border-gray-300 divide-y divide-gray-200"
+          style={{ fontFamily: "Poppins, sans-serif" }}
+        >
+          {/* Table Header */}
+          <thead className="bg-[#7B3434] sticky top-0 z-10 text-white">
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <tr key={headerGroup.id} className="divide-x divide-gray-300">
                 {headerGroup.headers.map((header) => (
                   <th
-                    className="px-6 py-3 uppercase text-left text-xs font-medium text-gray-500 tracking-wider"
                     key={header.id}
+                    className="px-6 py-3 text-left text-xs font-medium tracking-wider"
                   >
                     <div
                       {...{
@@ -170,7 +180,6 @@ export default function Staff() {
                             header.column.id === "email")
                             ? "cursor-pointer select-none flex items-center"
                             : "",
-
                         onClick:
                           header.column.id === "firstname" ||
                           header.column.id === "email"
@@ -192,11 +201,22 @@ export default function Staff() {
               </tr>
             ))}
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+
+          {/* Table Body */}
+          <tbody
+            className="bg-white divide-y divide-gray-200"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
             {table.getRowModel().rows.map((row) => (
-              <tr className="hover:bg-gray-50" key={row.id}>
+              <tr
+                key={row.id}
+                className="hover:bg-[#F5E3C2] divide-x divide-gray-200"
+              >
                 {row.getVisibleCells().map((cell) => (
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td
+                    key={cell.id}
+                    className="px-6 py-4 whitespace-nowrap text-sm text-gray-700"
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
@@ -206,7 +226,10 @@ export default function Staff() {
         </table>
       </div>
       <div className="flex flex-row justify-between align-middle items-center mt-2 text-sm text-gray-500 w-full">
-        <div className="flex items-center">
+        <div
+          className="flex items-center"
+          style={{ fontFamily: "Inter, sans-serif" }}
+        >
           <span className="mr-2">Items per page</span>
           <select
             className="border-2 outline-none border-gray-700 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2 py-1"
@@ -237,7 +260,10 @@ export default function Staff() {
           >
             <ChevronLeftSharp sx={{ fontSize: "20px" }} />
           </button>
-          <span className="flex items-center">
+          <span
+            className="flex items-center"
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
             <input
               className="w-16 p-2 py-1 rounded-md border border-gray-300 text-center"
               min={1}
