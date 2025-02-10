@@ -19,6 +19,10 @@ export default function Roles() {
       if (response) {
         console.log(response.data.message);
         setMessage(response.data.message);
+        setRole("");
+        setTimeout(() => {
+          setMessage("");
+        }, 3000);
       }
     } catch (error) {
       console.log(error);
@@ -28,10 +32,10 @@ export default function Roles() {
   };
   return (
     <div
-      className="flex p-3 text-[#2E2B2B]"
+      className="p-3 text-[#2E2B2B]"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
-      <div className="bg-gray-800 rounded-md shadow-md h-fit pb-5">
+      <div className="bg-gray-800 flex flex-col rounded-md shadow-md">
         <div
           className="bg-[#7b3434] w-full text-white text-center py-2 rounded-t-md"
           style={{ fontFamily: "Poppins, sans-serif" }}
@@ -49,7 +53,7 @@ export default function Roles() {
             />
           </div>
           <button
-            className="text-white bg-green-500 py-1 px-2 hover:bg-green-400"
+            className="text-white bg-green-500 py-1 px-2 hover:bg-green-400 disabled:bg-green-300"
             onClick={handleClick}
             disabled={isPending}
           >
@@ -81,12 +85,14 @@ export default function Roles() {
               )}
             </span>
           </button>
-          <span
-            className={`text-white mt-10 ${message ? "visible" : "invisible"}`}
-          >
-            {message && message}
-          </span>
         </div>
+        <span
+          className={`text-white mt-10  ${
+            message ? "visible" : "invisible"
+          } bg-green-500 p-2 text-center w-full`}
+        >
+          {message && message}
+        </span>
       </div>
       <div className="bg-yellow-500"></div>
     </div>
