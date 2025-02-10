@@ -113,7 +113,9 @@ export default function Staff() {
   });
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/fetch-users");
+      const response = await axios.get(
+        "https://portal-server-1.onrender.com/fetch-users"
+      );
       if (response.data?.users) {
         setStaff(response.data.users);
       }

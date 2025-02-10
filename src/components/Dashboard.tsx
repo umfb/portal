@@ -37,10 +37,7 @@ export default function Dashboard() {
   return (
     <div className="flex flex-col h-screen">
       <NavBar />
-      <div
-        className="flex h-[92%]"
-        // style={{ display: "grid", gridTemplateColumns: "250px 1fr" }}
-      >
+      <div className="flex h-[92%]">
         <SideBar />
         <Outlet />
       </div>

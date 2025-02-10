@@ -56,7 +56,7 @@ export default function LoginPage() {
     }
     try {
       const data = await axios.post(
-        "http://localhost:5000/login",
+        "https://portal-server-1.onrender.com/login",
         formDetails,
         {
           withCredentials: true,

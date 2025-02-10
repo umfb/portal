@@ -117,7 +117,7 @@ export default function SignUpPage() {
         return acc;
       }, {} as Partial<FormData>);
       const response = await axios.post<ApiResponse>(
-        "http://localhost:5000/register",
+        "https://portal-server-1.onrender.com/register",
         actualData
       );
       if (response.data) {
