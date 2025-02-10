@@ -9,7 +9,7 @@ export default function Dashboard() {
   const verifyUser = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:5000/verify",
+        "https://portal-server-1.onrender.com/verify",
         {},
         {
           headers: {
