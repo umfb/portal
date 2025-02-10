@@ -127,7 +127,7 @@ export default function Staff() {
   }, []);
 
   return (
-    <div className="flex flex-col h-full w-full px-4 sm:px-6 lg:px-8 bg-[#b4cf4a65] items-start pt-3 pb-4">
+    <div className="flex flex-col h-full flex-1 px-4 sm:px-6 lg:px-8 bg-[#F5E3C2] items-start pt-3 pb-4">
       <div className="flex items-center justify-between w-full mb-2">
         <div className="border-2 border-[#7b3434] flex items-center px-2 py-1">
           <SearchSharp />
@@ -141,7 +141,7 @@ export default function Staff() {
         </div>
         <div className="flex items-center">
           <Link
-            className="flex items-center bg-green-500 py-1 px-2 hover:bg-green-400 shadow-sm text-sm shadow-black"
+            className="flex items-center bg-[#8AA52F] py-1 px-2 active:bg-[#BB7A5A] shadow-sm text-sm shadow-black"
             to="/dashboard/signup"
             style={{ color: "white", textDecoration: "none" }}
           >

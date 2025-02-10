@@ -21,17 +21,17 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-full bg-white text-gray-900 m-0 border-r transition-width ease-in-out duration-700 ${
-        isExpanded ? "w-[18%]" : "w-[5%]"
+      className={`h-full bg-[#F4F4F4] text-[#1C1C1C] m-0 border-r transition-width ease-in-out duration-700 ${
+        isExpanded ? "w-[250px]" : "w-[80px]"
       }`}
     >
-      <nav className="flex flex-col">
+      <nav className="flex flex-col text-[#E0E0E0]">
         <div className="flex justify-between items-start shadow-sm px-3 py-2">
           {isExpanded && (
             <div className="flex flex-col gap-1">
-              <p className="p-0 m-0 text-base font-bold">
+              <p className="p-0 m-0 text-base font-bold text-[#37474F]">
                 Welcome,<br></br>
-                <span className="text-sm font-semibold text-[#7d3434]">
+                <span className="text-sm font-semibold text-[#1C1C1C]">
                   {localStorage.getItem("user")}
                 </span>
               </p>
@@ -41,13 +41,13 @@ export default function SideBar() {
             {isExpanded ? <ChevronLeftRounded /> : <ChevronRightRounded />}
           </button>
         </div>
-        <ul className="flex flex-col gap-3 mt-3 px-3">
+        <ul className="flex flex-col gap-3 mt-3 px-0 text-[#1C1C1C]">
           <div
-            className="flex items-center gap-3 text-gray-900"
+            className="flex items-center gap-3"
             style={{ textDecoration: "none" }}
           >
-            <div className="flex items-center gap-3 text-gray-900">
-              <button>
+            <div className="flex items-center gap-3 ps-3">
+              <button className="text-[#1C1C1C]">
                 <Business />
               </button>
               {isExpanded && <button>Departments</button>}
@@ -111,6 +111,18 @@ export default function SideBar() {
               </NavLink>
               <NavLink
                 to=""
+                className="text-gray-700 hover:bg-[#dcee96] hover:text-black ps-3 py-1 active:bg-red-500"
+                style={{
+                  textDecoration: "none",
+                  color: "#7b3434",
+                  fontSize: "14px",
+                  fontWeight: "500",
+                }}
+              >
+                Credit & Marketing
+              </NavLink>
+              <NavLink
+                to=""
                 className="text-gray-700 hover:bg-[#dcee96] hover:text-black ps-3 py-1"
                 style={{
                   textDecoration: "none",
@@ -119,7 +131,7 @@ export default function SideBar() {
                   fontWeight: "500",
                 }}
               >
-                AUDIT
+                Audit
               </NavLink>
               <NavLink
                 to=""
@@ -149,41 +161,51 @@ export default function SideBar() {
           </div>
           <NavLink
             to="staff"
-            className="flex items-center gap-3 cursor-pointer text-gray-900 mb-3"
+            className={({ isActive }) =>
+              `flex items-center gap-3 cursor-pointer ps-3 py-3 hover:bg-[#C8E363] ${
+                isActive ? "bg-[#BB7A5A]" : ""
+              }`
+            }
             style={{
               textDecoration: "none",
-              color: "oklch(0.21 0.034 264.665)",
+              color: "#1C1C1C",
             }}
           >
-            <button>
+            <button className="">
               <PeopleOutlineRounded />
             </button>
             {isExpanded && <button>Staff</button>}
           </NavLink>
           <NavLink
-            to="roles"
-            className="flex items-center gap-3 cursor-pointer text-gray-900 mb-3"
+            to="./roles"
+            className={({ isActive }) =>
+              `flex items-center gap-3 cursor-pointer ps-3 py-3 hover:bg-[#C8E363] ${
+                isActive ? "bg-[#BB7A5A]" : ""
+              }`
+            }
             style={{
               textDecoration: "none",
-              color: "oklch(0.21 0.034 264.665)",
+              color: "#1C1C1C",
             }}
           >
-            <button>
+            <button className="">
               <AdminPanelSettings />
             </button>
             {isExpanded && <button>Roles Config</button>}
           </NavLink>
           <NavLink
-            to="activities"
-            className="flex items-center gap-3 cursor-pointer text-gray-900 mb-3"
+            to="./activities"
+            className={({ isActive }) =>
+              `flex items-center gap-3 cursor-pointer ps-3 py-3 hover:bg-[#C8E363] ${
+                isActive ? "bg-[#BB7A5A]" : ""
+              }`
+            }
             style={{
               textDecoration: "none",
-              color: "oklch(0.21 0.034 264.665)",
+              color: "#1C1C1C",
             }}
           >
-            <button>
-              <History />
-            </button>
+            <History />
             {isExpanded && <button>Activities</button>}
           </NavLink>
         </ul>

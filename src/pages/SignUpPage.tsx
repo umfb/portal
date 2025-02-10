@@ -1,5 +1,6 @@
 import {
   AssignmentInd,
+  Business,
   EmailSharp,
   Lock,
   Person,
@@ -19,6 +20,7 @@ type FormData = {
   email: string;
   phoneNumber: string;
   accessRole: string;
+  department: string;
   password: string;
   confirmPassword: string;
 };
@@ -52,6 +54,7 @@ const schema = z
       .regex(/^\d{11}$/, "Phone number must be 10 digits")
       .nonempty("This field is required"),
     accessRole: z.string().nonempty("This field is required"),
+    department: z.string().nonempty("This field is required"),
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")
@@ -105,6 +108,7 @@ export default function SignUpPage() {
         "phoneNumber",
         "accessRole",
         "password",
+        "department",
       ];
       const actualData = keysToSend.reduce((acc, key) => {
         if (formDetails[key]) {
@@ -134,10 +138,10 @@ export default function SignUpPage() {
 
   return (
     <div className="bg-[#b4cf4ab4] w-full flex items-center ">
-      <div className="w-[50%] mx-auto">
+      <div className="w-[60%] mx-auto">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white w-full rounded-2xl px-20 py-5 flex flex-col gap-[18px] h-fit shadow-2xl"
+          className="bg-white w-full rounded-2xl px-10 py-5 flex flex-col gap-[18px] h-fit shadow-2xl"
         >
           <h1
             className="text-[#afd039] text-center"
@@ -265,6 +269,30 @@ export default function SignUpPage() {
             )}
           </div>
           <div className="flex items-center px-1 border-2 relative border-[#afd039]">
+            <Business />
+            <select
+              {...register("department")}
+              className="w-full py-[10px] outline-none"
+              name="department"
+              defaultValue=""
+            >
+              <option className="text-secondary" value="" disabled>
+                --Department--
+              </option>
+              <option value="Audit">Audit</option>
+              <option value="Compliance">Compliance</option>
+              <option value="Credit and Marketing">Credit & Marketing</option>
+              <option value="Finance and Ops">Finance & Ops</option>
+              <option value="HR">HR</option>
+              <option value="IT">IT</option>
+            </select>
+            {errors.department && (
+              <p className="text-red-500 text-xs absolute top-[100%]">
+                {errors.department.message}
+              </p>
+            )}
+          </div>
+          <div className="flex items-center px-1 border-2 relative border-[#afd039]">
             <AssignmentInd />
             <select
               {...register("accessRole")}
@@ -284,6 +312,7 @@ export default function SignUpPage() {
               </p>
             )}
           </div>
+
           <div className="text-center w-full mt-4">
             <button
               className={`bg-[#7b3434] text-white p-2 w-full flex items-center justify-center gap-2 ${
