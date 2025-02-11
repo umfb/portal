@@ -6,6 +6,7 @@ import axios, { AxiosError } from "axios";
 import { EmailSharp, Lock } from "@mui/icons-material";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import ForgetPasswordModel from "../components/ForgetPasswordModel";
 
 type FormData = {
   email: string;
@@ -32,6 +33,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const [isHidden, setIsHidden] = useState<boolean>(false);
   const [isPending, setIsPending] = useState<boolean>(false);
+  const [isModalShown, setIsModalShown] = useState(false);
 
   const handlePasswordVisibility = (event: MouseEvent<HTMLButtonElement>) => {
     const name = event.currentTarget.name;
@@ -79,7 +81,7 @@ export default function LoginPage() {
     }
   };
   return (
-    <div className="w-full h-full flex items-center">
+    <div className="w-full h-full flex items-center relative">
       <form
         className="bg-white w-[90%] mx-auto border-2 py-10 px-20 flex flex-col gap-[18px] h-[90%] items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -141,8 +143,25 @@ export default function LoginPage() {
             )}
             {isPending ? "Logging in..." : "Login"}
           </button>
+          <div
+            className="text-right text-sm text-[#7b3434] "
+            style={{ fontFamily: "Inter, sans-serif" }}
+          >
+            <button
+              type="button"
+              onClick={() => setIsModalShown(!isModalShown)}
+              className="underline"
+            >
+              Forgot Password?
+            </button>
+          </div>
         </div>
       </form>
+      {isModalShown && (
+        <div className="absolute w-full h-screen top-0 left-0 bg-[#0000008f]">
+          <ForgetPasswordModel setIsModalShown={setIsModalShown} />
+        </div>
+      )}
       <ToastContainer />
     </div>
   );

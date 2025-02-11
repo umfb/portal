@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import Dashboard from "./components/Dashboard";
 import Staff from "./pages/Staff";
 import Roles from "./pages/Roles";
+import ResetPassword from "./pages/ResetPassword";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="staff" element={<Staff />} />
         <Route path="roles" element={<Roles />} />
       </Route>
+      <Route path="reset-password" element={<ResetPassword />} />
     </Routes>
   );
 }

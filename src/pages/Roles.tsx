@@ -9,6 +9,7 @@ import {
   KeyboardDoubleArrowRightSharp,
   ChevronLeftSharp,
   KeyboardDoubleArrowLeftSharp,
+  UnfoldMore,
 } from "@mui/icons-material";
 import axios, { AxiosError } from "axios";
 import { format } from "date-fns";
@@ -246,10 +247,16 @@ export default function Roles() {
                     className="px-6 py-3 text-left text-xs tracking-wider"
                     key={header.id}
                   >
-                    {flexRender(
-                      header.column.columnDef.header,
-                      header.getContext()
-                    )}
+                    <div
+                      className="flex gap-1 items-center cursor-pointer"
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      {flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                      <UnfoldMore sx={{ fontSize: "14px" }} />
+                    </div>
                   </th>
                 ))}
               </tr>
