@@ -58,7 +58,7 @@ export default function LoginPage() {
     }
     try {
       const data = await axios.post(
-        "https://portal-server-1.onrender.com/login",
+        "http://localhost:5000/login",
         formDetails,
         {
           withCredentials: true,
@@ -70,7 +70,9 @@ export default function LoginPage() {
         localStorage.setItem("user", data.data.name);
         localStorage.setItem("email", data.data.email);
         toast.success("Authentication Successful");
-        navigate("/dashboard");
+        setTimeout(() => {
+          navigate("/dashboard");
+        }, 3000);
       }
     } catch (error) {
       const axiosError = error as AxiosError;
@@ -162,7 +164,7 @@ export default function LoginPage() {
           <ForgetPasswordModel setIsModalShown={setIsModalShown} />
         </div>
       )}
-      <ToastContainer />
+      <ToastContainer autoClose={3000} />
     </div>
   );
 }

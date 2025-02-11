@@ -17,15 +17,10 @@ import { NavLink } from "react-router-dom";
 
 export default function SideBar() {
   const [isExpanded, setIsExpanded] = useState<boolean>(true);
-  // const [isListVisible, setIsListVisible] = useState<boolean>(false);
-
-  // const toggleListVisibility = () => {
-  //   setIsListVisible(!isListVisible);
-  // };
 
   return (
     <aside
-      className={`h-full bg-[#fff] text-black text-sm m-0 border-r transition-width ease-in-out duration-700 ${
+      className={`h-full bg-[#fff] text-black text-sm m-0 border-r transition-width ease-in-out duration-400 ${
         isExpanded ? "w-[250px]" : "w-[80px]"
       }`}
     >
@@ -51,13 +46,13 @@ export default function SideBar() {
             {isExpanded ? <ChevronLeftRounded /> : <ChevronRightRounded />}
           </button>
         </div>
-        <ul className="flex flex-col mt-3 px-0 text-[#1C1C1C]">
-          <div className="border-y border-[#AFCD39]">
+        <ul className={`flex flex-col mt-3 px-0 text-[#1C1C1C]`}>
+          <div className={`flex flex-col ${!isExpanded && "items-center"}`}>
             <NavLink
               to="./hr"
               className={({ isActive }) =>
-                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                  isActive ? "bg-[#BB7A5A]" : ""
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
                 }`
               }
               style={{
@@ -67,13 +62,13 @@ export default function SideBar() {
               }}
             >
               <Group />
-              HR
+              {isExpanded && <span>Human Resources</span>}
             </NavLink>
             <NavLink
               to="./finOps"
               className={({ isActive }) =>
-                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                  isActive ? "bg-[#BB7A5A]" : ""
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
                 }`
               }
               style={{
@@ -83,13 +78,13 @@ export default function SideBar() {
               }}
             >
               <AccountBalance />
-              Finance & Ops
+              {isExpanded && <span>Finance and Operations</span>}
             </NavLink>
             <NavLink
               to="crM"
               className={({ isActive }) =>
-                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                  isActive ? "bg-[#BB7A5A]" : ""
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
                 }`
               }
               style={{
@@ -99,13 +94,13 @@ export default function SideBar() {
               }}
             >
               <Campaign />
-              Credit & Marketing
+              {isExpanded && <span>Credit and Marketing</span>}
             </NavLink>
             <NavLink
               to="audit"
               className={({ isActive }) =>
-                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                  isActive ? "bg-[#BB7A5A]" : ""
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
                 }`
               }
               style={{
@@ -115,13 +110,13 @@ export default function SideBar() {
               }}
             >
               <AssignmentTurnedIn />
-              Audit
+              {isExpanded && <span>Audit</span>}
             </NavLink>
             <NavLink
               to="compliance"
               className={({ isActive }) =>
-                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                  isActive ? "bg-[#BB7A5A]" : ""
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
                 }`
               }
               style={{
@@ -131,13 +126,13 @@ export default function SideBar() {
               }}
             >
               <Security />
-              Compliance
+              {isExpanded && <span>Compliance</span>}
             </NavLink>
             <NavLink
               to="./info-tech"
               className={({ isActive }) =>
-                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                  isActive ? "bg-[#BB7A5A]" : ""
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
                 }`
               }
               style={{
@@ -147,61 +142,62 @@ export default function SideBar() {
               }}
             >
               <Computer />
-              IT
+              {isExpanded && <span>Information Technology</span>}
+            </NavLink>
+
+            <NavLink
+              to="staff"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <button className="">
+                <PeopleOutlineRounded />
+              </button>
+              {isExpanded && <button>Staff</button>}
+            </NavLink>
+            <NavLink
+              to="./roles"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <button className="">
+                <AdminPanelSettings />
+              </button>
+              {isExpanded && <button>Roles Config</button>}
+            </NavLink>
+            <NavLink
+              to="./activities"
+              className={({ isActive }) =>
+                `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
+                  isActive ? "bg-[#bb7a5a8c]" : ""
+                }`
+              }
+              style={{
+                textDecoration: "none",
+                color: "#1C1C1C",
+                fontFamily: "Inter, sans-serif",
+              }}
+            >
+              <History />
+              {isExpanded && <button>Audit Logs</button>}
             </NavLink>
           </div>
-          <NavLink
-            to="staff"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#1C1C1C",
-              fontFamily: "Inter, sans-serif",
-            }}
-          >
-            <button className="">
-              <PeopleOutlineRounded />
-            </button>
-            {isExpanded && <button>Staff</button>}
-          </NavLink>
-          <NavLink
-            to="./roles"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#1C1C1C",
-              fontFamily: "Inter, sans-serif",
-            }}
-          >
-            <button className="">
-              <AdminPanelSettings />
-            </button>
-            {isExpanded && <button>Roles Config</button>}
-          </NavLink>
-          <NavLink
-            to="./activities"
-            className={({ isActive }) =>
-              `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#C8E363] ${
-                isActive ? "bg-[#BB7A5A]" : ""
-              }`
-            }
-            style={{
-              textDecoration: "none",
-              color: "#1C1C1C",
-              fontFamily: "Inter, sans-serif",
-            }}
-          >
-            <History />
-            {isExpanded && <button>Audit Logs</button>}
-          </NavLink>
         </ul>
       </nav>
     </aside>

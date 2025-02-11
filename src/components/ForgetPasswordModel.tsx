@@ -66,8 +66,9 @@ export default function ForgetPasswordModel({
         />
         <button
           onClick={() => handleSubmit()}
-          className="bg-[#7b3434] text-white py-2 flex items-center justify-center gap-1"
+          className="bg-[#7b3434] text-white py-2 flex items-center justify-center gap-1 disabled:bg-[#7b343457]"
           style={{ fontFamily: "Inter, sans-serif" }}
+          disabled={isPending}
         >
           {isPending && (
             <svg

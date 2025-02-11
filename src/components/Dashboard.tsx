@@ -1,15 +1,22 @@
 import { useNavigate, Outlet } from "react-router-dom";
 import NavBar from "./NavBar";
 import SideBar from "./SideBar";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import api from "../api";
+
+type responseData = {
+  message: string;
+  status: boolean;
+};
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const verifyUser = async () => {
     try {
-      const response = await axios.post(
-        "https://portal-server-1.onrender.com/verify",
+      const response = await api.post(
+        "/verify",
         {},
         {
           headers: {
@@ -23,10 +30,12 @@ export default function Dashboard() {
       }
     } catch (error) {
       const axiosError = error as AxiosError;
-      if (axiosError.status === 403 || 404) {
+      const resData = axiosError.response?.data as responseData;
+      toast.error(resData?.message || "An error occured");
+
+      setTimeout(() => {
         navigate("/");
-      }
-      console.error("Error verifying user:", error);
+      }, 2000);
     }
   };
 
@@ -41,6 +50,7 @@ export default function Dashboard() {
         <SideBar />
         <Outlet />
       </div>
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }
