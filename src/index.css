@@ -18,5 +18,31 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* .date-header {
+  border: 1px solid #7b3434;
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.date-header::before,
+.date-header::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #7b3434;
+} */
+
+/* .date-header::before {
+  margin-right: 10px;
+}
+
+.date-header::after {
+  margin-left: 10px;
+} */
+
+
 @import "tailwindcss"
 

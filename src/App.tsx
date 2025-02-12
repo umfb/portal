@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 import Staff from "./pages/Staff";
 import Roles from "./pages/Roles";
 import ResetPassword from "./pages/ResetPassword";
+import Activities from "./pages/Activities";
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="signup" element={<SignUpPage />} />
         <Route path="staff" element={<Staff />} />
         <Route path="roles" element={<Roles />} />
+        <Route path="audit-log" element={<Activities />} />
       </Route>
       <Route path="reset-password" element={<ResetPassword />} />
     </Routes>

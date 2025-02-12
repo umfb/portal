@@ -96,6 +96,11 @@ export default function Roles() {
       sorting,
       globalFilter,
     },
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
+    },
     getCoreRowModel: getCoreRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
@@ -240,12 +245,12 @@ export default function Roles() {
         </div>
         <table className="w-full bg-[#7b3434] text-white shadow-md">
           <thead className="py-2">
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr className="divide-x" key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
+            {table.getHeaderGroups().map((headerGroup, index) => (
+              <tr className="divide-x" key={index}>
+                {headerGroup.headers.map((header, index) => (
                   <th
                     className="px-6 py-3 text-left text-xs tracking-wider"
-                    key={header.id}
+                    key={index}
                   >
                     <div
                       className="flex gap-1 items-center cursor-pointer"
@@ -263,12 +268,12 @@ export default function Roles() {
             ))}
           </thead>
           <tbody className="bg-white divide-y text-gray-900">
-            {table.getRowModel().rows.map((row) => (
-              <tr className="hover:bg-[#F5E3C2] divide-x" key={row.id}>
-                {row.getVisibleCells().map((cell) => (
+            {table.getRowModel().rows.map((row, index) => (
+              <tr className="hover:bg-[#F5E3C2] divide-x" key={index}>
+                {row.getVisibleCells().map((cell, index) => (
                   <td
                     className="px-6 py-4 whitespace-nowrap text-sm"
-                    key={cell.id}
+                    key={index}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>

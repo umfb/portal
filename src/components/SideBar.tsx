@@ -182,7 +182,7 @@ export default function SideBar() {
               {isExpanded && <button>Roles Config</button>}
             </NavLink>
             <NavLink
-              to="./activities"
+              to="./audit-log"
               className={({ isActive }) =>
                 `flex items-center gap-3 cursor-pointer ps-3 py-2 hover:bg-[#bb7a5a5c] ${
                   isActive ? "bg-[#bb7a5a8c]" : ""

@@ -147,7 +147,12 @@ export default function SignUpPage() {
       }, {} as Partial<FormData>);
       const response = await axios.post<ApiResponse>(
         "https://portal-server-1.onrender.com/register",
-        actualData
+        actualData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
       );
       if (response.data) {
         toast.success("Profile created successfully");

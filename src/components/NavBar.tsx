@@ -1,6 +1,7 @@
 import { Event, Logout, Settings } from "@mui/icons-material";
 import { toast } from "react-toastify";
 import axios, { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
 
 type responseData = {
   message: string;
@@ -8,6 +9,7 @@ type responseData = {
 };
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const handleLogOut = async () => {
     try {
       const response = await axios.post(
@@ -19,6 +21,12 @@ export default function NavBar() {
       );
       if (response.status && response.status === 200) {
         toast.success(response.data.message);
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("user");
+        localStorage.removeItem("email");
+        setTimeout(() => {
+          navigate("/");
+        }, 2200);
       }
     } catch (error) {
       const err = error as AxiosError;

@@ -35,7 +35,7 @@ api.interceptors.response.use(
       try {
         const { data } = await axios.post(
           "https://portal-server-1.onrender.com/refresh",
-          null,
+          { email: localStorage.getItem("email") },
           { withCredentials: true }
         );
         setAccessToken(data.accessToken);
