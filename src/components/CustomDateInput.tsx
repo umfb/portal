@@ -6,7 +6,7 @@ interface CustomDateInputProps {
 }
 
 const CustomDateInput = React.forwardRef<HTMLDivElement, CustomDateInputProps>(
-  ({ value, onClick }, ref) => (
+  ({ onClick }, ref) => (
     <div
       onClick={onClick}
       ref={ref}
