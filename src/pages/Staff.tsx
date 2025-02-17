@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
@@ -24,6 +23,7 @@ import {
   SearchSharp,
   UnfoldMore,
 } from "@mui/icons-material";
+import api from "../api";
 
 type staffType = {
   _id: number;
@@ -113,9 +113,7 @@ export default function Staff() {
   });
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        "https://portal-server-1.onrender.com/fetch-users"
-      );
+      const response = await api.get("/fetch-users");
       if (response.data?.users) {
         setStaff(response.data.users);
       }
@@ -149,7 +147,7 @@ export default function Staff() {
           style={{ fontFamily: "Inter, sans-serif" }}
         >
           <Link
-            className="flex items-center bg-[#8AA52F] py-1 px-2 active:bg-[#BB7A5A] shadow-sm text-sm shadow-black"
+            className="flex items-center bg-[#6ddd5b] py-1 px-2 active:bg-[#BB7A5A] shadow-sm text-xs shadow-black"
             to="/dashboard/signup"
             style={{ color: "white", textDecoration: "none" }}
           >

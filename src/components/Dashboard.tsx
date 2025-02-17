@@ -44,10 +44,10 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen">
-      <NavBar />
-      <div className="flex h-[92%]">
-        <SideBar />
+    <div className="flex h-screen bg-gray-50">
+      <SideBar />
+      <div className="flex flex-col flex-1 h-[92%]">
+        <NavBar />
         <Outlet />
       </div>
       <ToastContainer autoClose={2000} />

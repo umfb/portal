@@ -11,7 +11,7 @@ import {
   KeyboardDoubleArrowLeftSharp,
   UnfoldMore,
 } from "@mui/icons-material";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import {
@@ -24,6 +24,7 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import api from "../api";
 
 type responseData = {
   message: string;
@@ -111,8 +112,8 @@ export default function Roles() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.post(
-        "https://portal-server-1.onrender.com/role/get-roles",
+      const response = await api.post(
+        "/role/get-roles",
         {},
         {
           headers: {
@@ -133,13 +134,10 @@ export default function Roles() {
   const handleClick = async () => {
     setIsPending(true);
     try {
-      const response = await axios.post(
-        "https://portal-server-1.onrender.com/role/add-role",
-        {
-          role,
-          creator: localStorage.getItem("email"),
-        }
-      );
+      const response = await api.post("/role/add-role", {
+        role,
+        creator: localStorage.getItem("email"),
+      });
       if (response) {
         fetchRoles();
         console.log(response.data.message);
@@ -167,10 +165,10 @@ export default function Roles() {
   }, []);
   return (
     <div
-      className="p-3 flex gap-3 items-start text-[#2E2B2B] flex-1 justify-around"
+      className="p-3 flex flex-col overflow-scroll gap-3 items-start text-[#2E2B2B] flex-1 justify-around"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
-      <div className="bg-gray-800 flex flex-col rounded-md shadow-md">
+      <div className="bg-white flex flex-col rounded-md shadow-md">
         <div
           className="bg-[#7b3434] w-full text-white text-center py-2 rounded-t-md"
           style={{ fontFamily: "Poppins, sans-serif" }}
@@ -180,7 +178,7 @@ export default function Roles() {
         <div className="p-3 flex flex-col gap-3">
           <div className="flex gap-1">
             <input
-              className="py-2 px-3 border outline-none text-white"
+              className="py-2 px-3 border-1 border-[#7b3434] outline-none"
               placeholder="Add Role..."
               type="text"
               value={role || ""}
@@ -229,7 +227,7 @@ export default function Roles() {
           {(message && message) || (error && error)}
         </span>
       </div>
-      <div className="flex flex-col items-start w-fit gap-2">
+      <div className="flex flex-col items-start gap-2">
         <div
           className="border-2 border-[#7b3434] flex items-center ps-2 py-1"
           style={{ fontFamily: "Inter, sans-serif" }}
@@ -243,15 +241,12 @@ export default function Roles() {
             className="outline-none text-sm"
           />
         </div>
-        <table className="w-full bg-[#7b3434] text-white shadow-md">
-          <thead className="py-2">
+        <table className="w-[80%]  bg-[#7b3434] text-white shadow-md">
+          <thead className="py-2 overflow-auto">
             {table.getHeaderGroups().map((headerGroup, index) => (
               <tr className="divide-x" key={index}>
                 {headerGroup.headers.map((header, index) => (
-                  <th
-                    className="px-6 py-3 text-left text-xs tracking-wider"
-                    key={index}
-                  >
+                  <th className="px-6 py-3 text-left text-xs" key={index}>
                     <div
                       className="flex gap-1 items-center cursor-pointer"
                       onClick={header.column.getToggleSortingHandler()}
@@ -271,10 +266,7 @@ export default function Roles() {
             {table.getRowModel().rows.map((row, index) => (
               <tr className="hover:bg-[#F5E3C2] divide-x" key={index}>
                 {row.getVisibleCells().map((cell, index) => (
-                  <td
-                    className="px-6 py-4 whitespace-nowrap text-sm"
-                    key={index}
-                  >
+                  <td className="px-6 py-4 text-sm" key={index}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

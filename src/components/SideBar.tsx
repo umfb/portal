@@ -20,21 +20,24 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-full bg-[#fff] text-black text-sm m-0 border-r transition-width ease-in-out duration-400 ${
+      className={`h-[95%] my-auto mx-4 bg-[#7b3434] rounded-2xl text-white text-sm m-0 transition-width ease-in-out duration-400 absolute left-[-999px] top-[2.5px] lg:relative lg:left-0 ${
         isExpanded ? "w-[250px]" : "w-[80px]"
       }`}
     >
+      <div className="flex items-center justify-center py-3 w-full">
+        <img height="20px" width="50px" src="/mfb-logo.png" alt="bank's logo" />
+      </div>
       <nav className="flex flex-col text-[#E0E0E0]">
         <div className="flex justify-between items-start shadow-sm px-3 py-2">
           {isExpanded && (
             <div className="flex flex-col gap-1">
               <p
-                className="p-0 m-0 text-base font-bold text-[#37474F] font-poppins"
+                className="p-0 m-0 text-base font-bold text-[#AFD039] font-poppins"
                 style={{ fontFamily: "Poppins, sans-serif" }}
               >
                 Welcome,<br></br>
                 <span
-                  className="text-sm font-semibold text-[#1C1C1C] font-inter"
+                  className="text-sm font-semibold text-[white] font-inter"
                   style={{ fontFamily: "Inter, sans-serif" }}
                 >
                   {localStorage.getItem("user")}
@@ -46,7 +49,9 @@ export default function SideBar() {
             {isExpanded ? <ChevronLeftRounded /> : <ChevronRightRounded />}
           </button>
         </div>
-        <ul className={`flex flex-col mt-3 px-0 text-[#1C1C1C]`}>
+        <ul
+          className={`flex flex-col mt-3 text-[white] px-2 whitespace-nowrap`}
+        >
           <div className={`flex flex-col ${!isExpanded && "items-center"}`}>
             <NavLink
               to="./hr"
@@ -57,7 +62,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -73,7 +78,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -89,7 +94,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -105,7 +110,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -121,7 +126,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -137,13 +142,15 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
               <Computer />
               {isExpanded && <span>Information Technology</span>}
             </NavLink>
+
+            <div className="border-b border-[#AFD039] my-2"></div>
 
             <NavLink
               to="staff"
@@ -154,7 +161,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -172,7 +179,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -190,7 +197,7 @@ export default function SideBar() {
               }
               style={{
                 textDecoration: "none",
-                color: "#1C1C1C",
+                color: "white",
                 fontFamily: "Inter, sans-serif",
               }}
             >

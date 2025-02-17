@@ -57,13 +57,7 @@ export default function LoginPage() {
       console.log("missing form data");
     }
     try {
-      const data = await axios.post(
-        "https://portal-server-1.onrender.com/login",
-        formDetails,
-        {
-          withCredentials: true,
-        }
-      );
+      const data = await axios.post("http://localhost:5000/login", formDetails);
       if (data) {
         reset();
         localStorage.setItem("accessToken", data.data.accessToken);
@@ -85,7 +79,7 @@ export default function LoginPage() {
   return (
     <div className="w-full h-full flex items-center relative">
       <form
-        className="bg-white w-[90%] mx-auto border-2 py-10 px-20 flex flex-col gap-[18px] h-[90%] items-center justify-center"
+        className="bg-white w-[95%] mx-auto border-2 py-10 sm:px-2 md:px-20 flex flex-col gap-[18px] h-[90%] items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}
       >
         <h1 className="text-[#afd039] text-center" style={{ color: "#7b3434" }}>

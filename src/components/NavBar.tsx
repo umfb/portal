@@ -1,7 +1,9 @@
 import { Event, Logout, Settings } from "@mui/icons-material";
 import { toast } from "react-toastify";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import BreadCrumbs from "./BreadCrumbs";
+import api from "../api";
 
 type responseData = {
   message: string;
@@ -12,13 +14,9 @@ export default function NavBar() {
   const navigate = useNavigate();
   const handleLogOut = async () => {
     try {
-      const response = await axios.post(
-        "https://portal-server-1.onrender.com/logout",
-        null,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await api.post("/logout", null, {
+        withCredentials: true,
+      });
       if (response.status && response.status === 200) {
         toast.success(response.data.message);
         localStorage.removeItem("accessToken");
@@ -35,13 +33,13 @@ export default function NavBar() {
     }
   };
   return (
-    <nav className="flex justify-between px-3 h-[10%] py-3 items-center bg-[#7b3434]">
-      <img height="20px" width="50px" src="/mfb-logo.png" alt="bank's logo" />
-      <div className="flex gap-4 items-center">
-        <button className="text-white">
+    <nav className="flex justify-between px-3 h-[10%] py-3 items-center">
+      <BreadCrumbs />
+      <div className="flex gap-4 items-center float-right">
+        <button className="text-gray-800">
           <Event sx={{ fontSize: "20px" }} />
         </button>
-        <button className="text-white">
+        <button className="text-gray-800">
           <Settings sx={{ fontSize: "20px" }} />
         </button>
         <button onClick={() => handleLogOut()} className="text-red-500">

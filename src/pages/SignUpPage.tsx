@@ -91,7 +91,7 @@ export default function SignUpPage() {
   const fetchRoles = async () => {
     try {
       const response = await axios.post(
-        "https://portal-server-1.onrender.com/role/get-roles",
+        "http://localhost:5000/role/get-roles",
         {},
         {
           headers: {
@@ -146,7 +146,7 @@ export default function SignUpPage() {
         return acc;
       }, {} as Partial<FormData>);
       const response = await axios.post<ApiResponse>(
-        "https://portal-server-1.onrender.com/register",
+        "http://localhost:5000/register",
         actualData,
         {
           headers: {
@@ -175,11 +175,11 @@ export default function SignUpPage() {
   }, []);
 
   return (
-    <div className="bg-[#b4cf4ab4] w-full flex items-center ">
-      <div className="w-[60%] mx-auto">
+    <div className="bg-[#b4cf4ab4] flex-1 h-full flex items-center justify-center py-3">
+      <div className="w-full md:w-[65%] m-auto flex items-center justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="bg-white w-full rounded-2xl px-10 py-5 flex flex-col gap-[18px] h-fit shadow-2xl"
+          className="bg-white w-full rounded-2xl px-10 py-2 pb-3 flex flex-col gap-[18px] my-auto"
         >
           <h1
             className="text-[#afd039] text-center"
@@ -187,7 +187,7 @@ export default function SignUpPage() {
           >
             Create Profile
           </h1>
-          <div className="flex gap-2 items-center">
+          <div className="flex flex-col md:flex-row gap-2 items-center">
             <div className="flex items-center border-2 border-[#afd039] px-1 w-full relative">
               <Person />
               <input
@@ -221,7 +221,7 @@ export default function SignUpPage() {
               )}
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-col md:flex-row gap-2">
             <div className="flex items-center w-full px-1 border-2 border-[#afd039] relative">
               <Phone />
               <input
