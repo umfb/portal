@@ -14,9 +14,17 @@ export default function NavBar() {
   const navigate = useNavigate();
   const handleLogOut = async () => {
     try {
-      const response = await api.post("/logout", null, {
-        withCredentials: true,
-      });
+      const response = await api.post(
+        "/logout",
+        {},
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       if (response.status && response.status === 200) {
         toast.success(response.data.message);
         localStorage.removeItem("accessToken");
