@@ -10,8 +10,9 @@ import { useState, MouseEvent, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import api from "../api";
 
 type PasswordField = "password" | "confirmPassword";
 type FormData = {
@@ -90,8 +91,8 @@ export default function SignUpPage() {
 
   const fetchRoles = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/role/get-roles",
+      const response = await api.post(
+        "/role/get-roles",
         {},
         {
           headers: {
@@ -145,15 +146,11 @@ export default function SignUpPage() {
         }
         return acc;
       }, {} as Partial<FormData>);
-      const response = await axios.post<ApiResponse>(
-        "http://localhost:5000/register",
-        actualData,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
+      const response = await api.post<ApiResponse>("/register", actualData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       if (response.data) {
         toast.success("Profile created successfully");
         reset();

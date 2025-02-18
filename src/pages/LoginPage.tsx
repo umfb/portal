@@ -2,11 +2,12 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MouseEvent, useState } from "react";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { EmailSharp, Lock } from "@mui/icons-material";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ForgetPasswordModel from "../components/ForgetPasswordModel";
+import api from "../api";
 
 type FormData = {
   email: string;
@@ -57,7 +58,7 @@ export default function LoginPage() {
       console.log("missing form data");
     }
     try {
-      const data = await axios.post("http://localhost:5000/login", formDetails);
+      const data = await api.post("/login", formDetails);
       if (data) {
         reset();
         localStorage.setItem("accessToken", data.data.accessToken);
