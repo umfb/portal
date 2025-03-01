@@ -80,7 +80,7 @@ export default function LoginPage() {
     }
   };
   return (
-    <div className="w-full h-full flex items-center relative">
+    <div className="w-full h-full flex items-center relative" style={{fontFamily: "Inter, san-serif"}}>
       <form
         className="bg-white w-[95%] mx-auto border-2 py-10 sm:px-2 md:px-20 flex flex-col gap-[18px] h-[90%] items-center justify-center"
         onSubmit={handleSubmit(onSubmit)}
@@ -130,7 +130,7 @@ export default function LoginPage() {
         </div>
         <div className="text-center w-full mt-4">
           <button
-            className={`bg-[#7b3434] text-white p-2 w-full flex items-center justify-center gap-2 ${
+            className={`bg-[#800] text-white p-2 w-full flex items-center justify-center gap-2 ${
               isPending && "bg-[#7b343445]"
             }`}
             style={{ borderRadius: "10px", fontSize: "20px" }}

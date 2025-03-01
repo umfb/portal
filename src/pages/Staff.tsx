@@ -130,7 +130,7 @@ export default function Staff() {
     <div className="flex flex-col h-full flex-1 px-11 bg-[#fff] items-start pt-10 pb-4">
       <div className="flex items-center justify-between w-full mb-2">
         <div
-          className="border-2 border-[#7b3434] flex items-center px-2 py-1"
+          className="border-2 border-[#800] flex items-center px-2 py-1"
           style={{ fontFamily: "Inter, sans-serif" }}
         >
           <SearchSharp />
@@ -162,7 +162,7 @@ export default function Staff() {
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
           {/* Table Header */}
-          <thead className="bg-[#7B3434] sticky top-0 z-10 text-white">
+          <thead className="bg-[#800] sticky top-0 z-10 text-white">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id} className="divide-x divide-gray-300">
                 {headerGroup.headers.map((header) => (

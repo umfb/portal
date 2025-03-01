@@ -171,13 +171,24 @@ export default function Activities() {
                   key={event._id}
                   className="event-item w-full md:w-[80%] text-lg mx-auto"
                 >
-                  <div className="bg-[#fafafa] py-4 rounded-sm my-3 flex flex-col gap-3 shadow-md">
+                  <div
+                    className={`py-4 rounded-sm my-3 flex flex-col gap-3 shadow-md ${
+                      event.action.toLowerCase().includes("log")
+                        ? "bg-[#28a745] text-white"
+                        : event.action.toLowerCase().includes("role")
+                        ? "bg-[#fd7e14] text-white"
+                        : event.action.toLowerCase().includes("profile")
+                        ? "bg-[#007bff] text-white"
+                        : "bg-[#fafafa]"
+                    }`}
+                  >
                     <div className="flex justify-between px-3">
-                      <div>{event.author} -</div>
-                      <span className="text-green-500">{event.action}</span>
-                    </div>
-                    <div className="border-t px-3 border-gray-300 text-gray-600 text-sm py-3">
-                      {extractTime(event.createdAt)}
+                      <div>
+                        {event.author} - {event.action}
+                      </div>
+                      <span className="text-gray-100 text-sm">
+                        {extractTime(event.createdAt)}
+                      </span>
                     </div>
                   </div>
                 </div>

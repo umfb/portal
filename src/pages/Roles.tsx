@@ -170,7 +170,7 @@ export default function Roles() {
     >
       <div className="bg-white flex flex-col rounded-md shadow-md">
         <div
-          className="bg-[#7b3434] w-full text-white text-center py-2 rounded-t-md"
+          className="bg-[#800] w-full text-white text-center py-2 rounded-t-md"
           style={{ fontFamily: "Poppins, sans-serif" }}
         >
           <p className="p-0 m-0">Add New Role</p>
@@ -241,7 +241,7 @@ export default function Roles() {
             className="outline-none text-sm"
           />
         </div>
-        <table className="w-[80%]  bg-[#7b3434] text-white shadow-md">
+        <table className="w-[80%]  bg-[#800] text-white shadow-md">
           <thead className="py-2 overflow-auto">
             {table.getHeaderGroups().map((headerGroup, index) => (
               <tr className="divide-x" key={index}>

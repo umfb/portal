@@ -20,7 +20,7 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`h-[95%] my-auto mx-4 bg-[#7b3434] rounded-2xl text-white text-sm m-0 transition-width ease-in-out duration-400 absolute left-[-999px] top-[2.5px] lg:relative lg:left-0 ${
+      className={`h-[95%] my-auto mx-4 bg-[#800] rounded-2xl text-white text-sm m-0 transition-width ease-in-out duration-400 absolute left-[-999px] top-[2.5px] lg:relative lg:left-0 ${
         isExpanded ? "w-[250px]" : "w-[80px]"
       }`}
     >
